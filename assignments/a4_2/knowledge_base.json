@@ -1,0 +1,222 @@
+{
+  "ontology_version": "1.2",
+  "domain": "Campus Placement Preparation",
+  "classes": {
+    "Skill": {
+      "properties": [
+        "name",
+        "difficulty",
+        "weight",
+        "prerequisites"
+      ]
+    },
+    "Company": {
+      "properties": [
+        "name",
+        "tier",
+        "cgpa_cutoff",
+        "required_skills"
+      ]
+    },
+    "Resource": {
+      "properties": [
+        "title",
+        "type",
+        "url",
+        "teaches"
+      ]
+    },
+    "Student": {
+      "properties": [
+        "cgpa",
+        "skill_levels",
+        "target_tier"
+      ]
+    }
+  },
+  "relations": [
+    {
+      "subject": "Skill",
+      "predicate": "REQUIRED_BY",
+      "object": "Company"
+    },
+    {
+      "subject": "Skill",
+      "predicate": "PREREQUISITE_OF",
+      "object": "Skill"
+    },
+    {
+      "subject": "Resource",
+      "predicate": "TEACHES",
+      "object": "Skill"
+    },
+    {
+      "subject": "Student",
+      "predicate": "HAS_LEVEL_IN",
+      "object": "Skill"
+    },
+    {
+      "subject": "Student",
+      "predicate": "ELIGIBLE_FOR",
+      "object": "Company"
+    }
+  ],
+  "individuals": {
+    "skills": {
+      "arrays": {
+        "difficulty": 2,
+        "weight": 0.9,
+        "prerequisites": []
+      },
+      "strings": {
+        "difficulty": 2,
+        "weight": 0.7,
+        "prerequisites": []
+      },
+      "recursion": {
+        "difficulty": 3,
+        "weight": 0.8,
+        "prerequisites": [
+          "arrays"
+        ]
+      },
+      "dp": {
+        "difficulty": 5,
+        "weight": 1.0,
+        "prerequisites": [
+          "recursion"
+        ]
+      },
+      "graphs": {
+        "difficulty": 5,
+        "weight": 0.95,
+        "prerequisites": [
+          "recursion"
+        ]
+      },
+      "trees": {
+        "difficulty": 4,
+        "weight": 0.85,
+        "prerequisites": [
+          "recursion"
+        ]
+      },
+      "oops": {
+        "difficulty": 2,
+        "weight": 0.75,
+        "prerequisites": []
+      },
+      "dbms": {
+        "difficulty": 3,
+        "weight": 0.8,
+        "prerequisites": []
+      },
+      "os": {
+        "difficulty": 3,
+        "weight": 0.7,
+        "prerequisites": []
+      },
+      "system_design": {
+        "difficulty": 5,
+        "weight": 0.6,
+        "prerequisites": [
+          "oops",
+          "dbms"
+        ]
+      },
+      "aptitude": {
+        "difficulty": 2,
+        "weight": 0.85,
+        "prerequisites": []
+      }
+    },
+    "companies": {
+      "Amazon": {
+        "tier": 1,
+        "cgpa_cutoff": 8.0,
+        "required_skills": [
+          "dp",
+          "graphs",
+          "trees",
+          "system_design"
+        ]
+      },
+      "Zoho": {
+        "tier": 2,
+        "cgpa_cutoff": 7.0,
+        "required_skills": [
+          "arrays",
+          "strings",
+          "oops",
+          "dp"
+        ]
+      },
+      "Freshworks": {
+        "tier": 2,
+        "cgpa_cutoff": 7.5,
+        "required_skills": [
+          "arrays",
+          "dbms",
+          "oops",
+          "trees"
+        ]
+      },
+      "Infosys": {
+        "tier": 3,
+        "cgpa_cutoff": 6.5,
+        "required_skills": [
+          "aptitude",
+          "oops",
+          "dbms"
+        ]
+      },
+      "TCS": {
+        "tier": 3,
+        "cgpa_cutoff": 6.0,
+        "required_skills": [
+          "aptitude",
+          "os",
+          "dbms"
+        ]
+      }
+    },
+    "resources": {
+      "striver_a2z": {
+        "type": "sheet",
+        "teaches": [
+          "arrays",
+          "dp",
+          "graphs",
+          "trees"
+        ]
+      },
+      "gfg_dbms": {
+        "type": "article",
+        "teaches": [
+          "dbms"
+        ]
+      },
+      "neetcode_150": {
+        "type": "problemset",
+        "teaches": [
+          "dp",
+          "graphs",
+          "arrays"
+        ]
+      },
+      "indiabix_apti": {
+        "type": "quiz",
+        "teaches": [
+          "aptitude"
+        ]
+      },
+      "ddia_book": {
+        "type": "book",
+        "teaches": [
+          "system_design",
+          "dbms"
+        ]
+      }
+    }
+  }
+}

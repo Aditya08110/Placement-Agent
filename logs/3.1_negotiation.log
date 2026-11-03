@@ -1,0 +1,78 @@
+# Activity 3.1_negotiation
+# command: python3 negotiation.py 
+# exit code: 0
+# lines: 73
+
+
+========================================================================================
+ MULTI-AGENT CONTRACT NET PROTOCOL :: MOCK-INTERVIEW TRAINING SLOT (Assignment 3.1)
+========================================================================================
+[10:40:21] StudentPrepAgent --INIT          --> budget=Rs.12,000 | slots needed=8 | weights cost/quality/slots=(0.45, 0.35, 0.2)
+[10:40:21] MentorAgent-A    --REGISTER      --> reservation=Rs.5,200 quality=9/10 capacity=6 flexibility=0.3
+[10:40:21] MentorAgent-B    --REGISTER      --> reservation=Rs.3,800 quality=7/10 capacity=10 flexibility=0.45
+[10:40:21] MentorAgent-C    --REGISTER      --> reservation=Rs.4,600 quality=8/10 capacity=8 flexibility=0.22
+
+========================================================================================
+ PHASE 1 :: CALL FOR PROPOSALS (CFP)
+========================================================================================
+[10:40:21] StudentPrepAgent --CFP           --> broadcast to 3 participants: 'need 8 mock-interview slots under Rs.12,000'
+[10:40:21] MentorAgent-A    --PROPOSE       --> round 0: Rs.7,749.61 | 6 slots | quality 9/10
+[10:40:21] MentorAgent-B    --PROPOSE       --> round 0: Rs.6,599.88 | 10 slots | quality 7/10
+[10:40:21] MentorAgent-C    --PROPOSE       --> round 0: Rs.6,998.39 | 8 slots | quality 8/10
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-C  buyer-utility = 0.6676
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-B  buyer-utility = 0.6475
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-A  buyer-utility = 0.6244
+
+========================================================================================
+ PHASE 2 :: MULTI-TURN PROPOSAL / COUNTER-PROPOSAL LOOP
+========================================================================================
+
+--- ROUND 1 ----------------------------------------------------------------------
+[10:40:21] StudentPrepAgent --COUNTER       --> target price Rs.6,600.00 | acceptance threshold 0.720
+[10:40:21] MentorAgent-A    --PROPOSE       --> round 1: Rs.7,404.73 | 7 slots | quality 9/10 | own-utility=0.6468
+[10:40:21] MentorAgent-B    --PROPOSE       --> round 1: Rs.6,599.93 | 10 slots | quality 7/10 | own-utility=0.8158
+[10:40:21] MentorAgent-C    --PROPOSE       --> round 1: Rs.6,910.75 | 9 slots | quality 8/10 | own-utility=0.6891
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-C  buyer-utility = 0.6708
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-A  buyer-utility = 0.6623
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-B  buyer-utility = 0.6475
+[10:40:21] StudentPrepAgent --CONCEDE       --> no bid met threshold -> relaxing to 0.685
+
+--- ROUND 2 ----------------------------------------------------------------------
+[10:40:21] StudentPrepAgent --COUNTER       --> target price Rs.6,996.00 | acceptance threshold 0.685
+[10:40:21] MentorAgent-A    --PROPOSE       --> round 2: Rs.7,282.11 | 7 slots | quality 9/10 | own-utility=0.6303
+[10:40:21] MentorAgent-B    --PROPOSE       --> round 2: Rs.6,778.16 | 10 slots | quality 7/10 | own-utility=0.8486
+[10:40:21] MentorAgent-C    --PROPOSE       --> round 2: Rs.6,929.50 | 9 slots | quality 8/10 | own-utility=0.692
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-C  buyer-utility = 0.6701
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-A  buyer-utility = 0.6669
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-B  buyer-utility = 0.6408
+[10:40:21] StudentPrepAgent --CONCEDE       --> no bid met threshold -> relaxing to 0.650
+
+--- ROUND 3 ----------------------------------------------------------------------
+[10:40:21] StudentPrepAgent --COUNTER       --> target price Rs.7,415.76 | acceptance threshold 0.650
+[10:40:21] MentorAgent-A    --PROPOSE       --> round 3: Rs.7,322.20 | 7 slots | quality 9/10 | own-utility=0.6357
+[10:40:21] MentorAgent-B    --PROPOSE       --> round 3: Rs.7,065.08 | 11 slots | quality 7/10 | own-utility=0.9315
+[10:40:21] MentorAgent-C    --PROPOSE       --> round 3: Rs.7,036.48 | 10 slots | quality 8/10 | own-utility=0.7458
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-C  buyer-utility = 0.6661
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-A  buyer-utility = 0.6654
+[10:40:21] StudentPrepAgent --EVALUATE      --> MentorAgent-B  buyer-utility = 0.6301
+[10:40:21] StudentPrepAgent --ACCEPT        --> utility 0.6661 >= threshold 0.650 -> intent to award
+
+========================================================================================
+ PHASE 3 :: CONSENSUS HANDSHAKE / CONTRACT AWARD
+========================================================================================
+[10:40:21] StudentPrepAgent --AWARD         --> CONTRACT -> MentorAgent-C
+[10:40:21] MentorAgent-C    --ACK           --> ACCEPT-PROPOSAL received. Committing 10 slots.
+[10:40:21] StudentPrepAgent --CONFIRM       --> HANDSHAKE COMPLETE (3-way: CFP -> PROPOSE -> ACCEPT/ACK)
+[10:40:21] StudentPrepAgent --REJECT        --> REJECT-PROPOSAL sent to MentorAgent-A
+[10:40:21] StudentPrepAgent --REJECT        --> REJECT-PROPOSAL sent to MentorAgent-B
+
+  FINAL CONTRACT
+    Provider        : MentorAgent-C
+    Agreed Fee      : Rs.7,036.48  (budget Rs.12,000)
+    Slots Secured   : 10 / 8 required
+    Trainer Quality : 8/10
+    Buyer  Utility  : 0.6661
+    Seller Utility  : 0.7458
+    Rounds Taken    : 3
+    STATUS          : CONSENSUS REACHED -- NEGOTIATION TERMINATED
+========================================================================================

@@ -1,0 +1,18 @@
+# Activity 2.2 SERVER (Agent-B, Placement Cell)
+# command: python3 -u agent_b_server.py
+
+==============================================================================
+ AGENT-B :: PLACEMENT CELL AGENT (socket server)  [Assignment 2.2]
+==============================================================================
+[10:40:36] [AGENT-B/SERVER] listening on 127.0.0.1:50607 ...
+[10:40:38] [AGENT-B/SERVER] connection accepted from ('127.0.0.1', 55919)
+[10:40:38] [AGENT-B/SERVER] ingested payload intent='HANDSHAKE' from 'AGENT-A'
+[10:40:38] [AGENT-B/SERVER] dispatched reply intent='HANDSHAKE_ACK'
+[10:40:39] [AGENT-B/SERVER] ingested payload intent='SYNC_STATE' from 'AGENT-A'
+[10:40:39] [AGENT-B/SERVER] reasoned -> 5 eligible / 1 blocked
+[10:40:39] [AGENT-B/SERVER] dispatched reply intent='ELIGIBILITY_REPORT'
+[10:40:39] [AGENT-B/SERVER] ingested payload intent='REQUEST_ACTION' from 'AGENT-A'
+[10:40:39] [AGENT-B/SERVER] dispatched reply intent='ACTION_DIRECTIVE'
+[10:40:40] [AGENT-B/SERVER] ingested payload intent='TERMINATE' from 'AGENT-A'
+[10:40:40] [AGENT-B/SERVER] dispatched reply intent='TERMINATE_ACK'
+[10:40:40] [AGENT-B/SERVER] connection with ('127.0.0.1', 55919) closed

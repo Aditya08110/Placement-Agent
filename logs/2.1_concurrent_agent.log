@@ -1,0 +1,79 @@
+# Activity 2.1_concurrent_agent
+# command: python3 concurrent_agent.py 
+# exit code: 0
+# lines: 74
+
+====================================================================================
+ PLACEMENT PREP AGENT :: CONCURRENT DAEMON INFRASTRUCTURE (Assignment 2.1)
+====================================================================================
+
+[10:40:15.148] [CodingMonitor     ] polled platform -> +3 solved, score=95%
+[10:40:15.148] [MAIN              ] started daemon thread 'CodingMonitor' (daemon=True)
+[10:40:15.148] [DriveMonitor      ] no new drives this cycle
+[10:40:15.148] [MAIN              ] started daemon thread 'DriveMonitor' (daemon=True)
+[10:40:15.148] [AptitudeMonitor   ] aptitude engine sync -> score=46%
+[10:40:15.148] [MAIN              ] started daemon thread 'AptitudeMonitor' (daemon=True)
+[10:40:15.148] [StateUpdater      ] applied CODING percept  (queue=1)
+[10:40:15.148] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:15.148] [MAIN              ] started daemon thread 'StateUpdater' (daemon=True)
+
+[10:40:15.148] [MAIN-EVENTLOOP    ] cycle 1: UI responsive | code=95% apt=46% solved=3 drives=0
+[10:40:15.853] [MAIN-EVENTLOOP    ] cycle 2: UI responsive | code=95% apt=46% solved=3 drives=0
+[10:40:15.953] [CodingMonitor     ] polled platform -> +3 solved, score=68%
+[10:40:15.953] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:16.153] [AptitudeMonitor   ] aptitude engine sync -> score=39%
+[10:40:16.153] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:16.453] [DriveMonitor      ] no new drives this cycle
+[10:40:16.558] [MAIN-EVENTLOOP    ] cycle 3: UI responsive | code=68% apt=39% solved=6 drives=0
+[10:40:16.758] [CodingMonitor     ] polled platform -> +1 solved, score=51%
+[10:40:16.758] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:17.158] [AptitudeMonitor   ] aptitude engine sync -> score=82%
+[10:40:17.158] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:17.263] [MAIN-EVENTLOOP    ] cycle 4: UI responsive | code=51% apt=82% solved=7 drives=0
+[10:40:17.562] [CodingMonitor     ] polled platform -> +3 solved, score=80%
+[10:40:17.562] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:17.758] [DriveMonitor      ] no new drives this cycle
+[10:40:17.968] [MAIN-EVENTLOOP    ] cycle 5: UI responsive | code=80% apt=82% solved=10 drives=0
+[10:40:18.163] [AptitudeMonitor   ] aptitude engine sync -> score=91%
+[10:40:18.164] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:18.366] [CodingMonitor     ] polled platform -> +1 solved, score=46%
+[10:40:18.366] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:18.673] [MAIN-EVENTLOOP    ] cycle 6: UI responsive | code=46% apt=91% solved=11 drives=0
+[10:40:19.060] [DriveMonitor      ] new placement drive detected -> Wipro
+[10:40:19.060] [StateUpdater      ] applied DRIVE percept  (queue=0)
+[10:40:19.164] [AptitudeMonitor   ] aptitude engine sync -> score=48%
+[10:40:19.165] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:19.169] [CodingMonitor     ] polled platform -> +3 solved, score=59%
+[10:40:19.169] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:19.374] [MAIN-EVENTLOOP    ] cycle 7: UI responsive | code=59% apt=48% solved=14 drives=1
+[10:40:19.974] [CodingMonitor     ] polled platform -> +1 solved, score=45%
+[10:40:19.974] [StateUpdater      ] applied CODING percept  (queue=0)
+[10:40:20.079] [MAIN-EVENTLOOP    ] cycle 8: UI responsive | code=45% apt=48% solved=15 drives=1
+[10:40:20.166] [AptitudeMonitor   ] aptitude engine sync -> score=93%
+[10:40:20.166] [StateUpdater      ] applied APTITUDE percept  (queue=0)
+[10:40:20.366] [DriveMonitor      ] new placement drive detected -> Wipro
+[10:40:20.366] [StateUpdater      ] applied DRIVE percept  (queue=0)
+[10:40:20.779] [CodingMonitor     ] polled platform -> +0 solved, score=78%
+[10:40:20.779] [StateUpdater      ] applied CODING percept  (queue=0)
+
+------------------------------------------------------------------------------------
+[10:40:20.784] [MAIN              ] shutdown signal issued to all daemons ...
+[10:40:20.785] [MAIN              ] thread 'CodingMonitor' joined cleanly (alive=False)
+[10:40:20.785] [MAIN              ] thread 'DriveMonitor' joined cleanly (alive=False)
+[10:40:20.785] [MAIN              ] thread 'AptitudeMonitor' joined cleanly (alive=False)
+[10:40:21.083] [MAIN              ] thread 'StateUpdater' joined cleanly (alive=False)
+
+====================================================================================
+ FINAL SHARED STATE (no race conditions):
+   coding_score       = 78
+   aptitude_score     = 93
+   open_drives        = 2
+   problems_solved    = 15
+   updates_applied    = 16
+
+ EXECUTION LATENCY REPORT (ms):
+   CodingMonitor      n=8   avg=0.1260 max=0.1772
+   DriveMonitor       n=5   avg=0.1253 max=0.2045
+   AptitudeMonitor    n=6   avg=0.1224 max=0.1750
+   MAIN-EVENTLOOP     n=8   avg=0.1371 max=0.1880
+====================================================================================

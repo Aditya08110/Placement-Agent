@@ -1,0 +1,32 @@
+[10:43:34] TICK 01 | topic=Graphs    code= 39% apt= 75% hrs=3.9  D-6  mock=9/10
+      -> [R1_URGENT_REVISION] ACTION: Switch to RAPID-REVISION mode (6 days left). Queue top-50 must-do problems.
+      -> [R2_CODING_REMEDIATION] ACTION: Assign 5 EASY + 2 MEDIUM problems on 'Graphs' (coding=39%).
+[10:43:35] TICK 02 | topic=Arrays    code= 66% apt= 32% hrs=5.5  D-15 mock=1/10
+      -> [R3_APTITUDE_DRILL] ACTION: Push 30-question aptitude drill (aptitude=32%).
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=1/10).
+[10:43:35] TICK 03 | topic=Arrays    code= 75% apt= 78% hrs=0.4  D-7  mock=9/10
+      -> [R1_URGENT_REVISION] ACTION: Switch to RAPID-REVISION mode (7 days left). Queue top-50 must-do problems.
+      -> [R5_IDLE_NUDGE] ACTION: Send reminder notification - only 0.4h studied today.
+[10:43:35] TICK 04 | topic=OOPS      code= 27% apt= 97% hrs=0.7  D-16 mock=10/10
+      -> [R2_CODING_REMEDIATION] ACTION: Assign 5 EASY + 2 MEDIUM problems on 'OOPS' (coding=27%).
+      -> [R5_IDLE_NUDGE] ACTION: Send reminder notification - only 0.7h studied today.
+[10:43:35] TICK 05 | topic=Arrays    code= 93% apt= 75% hrs=0.3  D-16 mock=1/10
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=1/10).
+      -> [R5_IDLE_NUDGE] ACTION: Send reminder notification - only 0.3h studied today.
+[10:43:35] TICK 06 | topic=DBMS      code= 37% apt= 62% hrs=2.5  D-36 mock=2/10
+      -> [R2_CODING_REMEDIATION] ACTION: Assign 5 EASY + 2 MEDIUM problems on 'DBMS' (coding=37%).
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=2/10).
+[10:43:35] TICK 07 | topic=DBMS      code= 59% apt= 96% hrs=4.9  D-13 mock=2/10
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=2/10).
+[10:43:35] TICK 08 | topic=DBMS      code= 93% apt= 49% hrs=2.2  D-37 mock=2/10
+      -> [R3_APTITUDE_DRILL] ACTION: Push 30-question aptitude drill (aptitude=49%).
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=2/10).
+[10:43:36] TICK 09 | topic=DBMS      code= 27% apt= 51% hrs=3.0  D-36 mock=7/10
+      -> [R2_CODING_REMEDIATION] ACTION: Assign 5 EASY + 2 MEDIUM problems on 'DBMS' (coding=27%).
+[10:43:36] TICK 10 | topic=OS        code= 60% apt= 84% hrs=3.5  D-31 mock=6/10
+      -> ACTION: Continue current study plan (no rule fired).
+[10:43:36] TICK 11 | topic=Graphs    code= 51% apt= 48% hrs=4.2  D-17 mock=2/10
+      -> [R3_APTITUDE_DRILL] ACTION: Push 30-question aptitude drill (aptitude=48%).
+      -> [R4_MOCK_INTERVIEW] ACTION: Schedule mock interview + communication feedback (rating=2/10).
+[10:43:36] TICK 12 | topic=DBMS      code= 58% apt= 92% hrs=3.0  D-23 mock=8/10
+      -> ACTION: Continue current study plan (no rule fired).

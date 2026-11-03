@@ -1,0 +1,267 @@
+# Activity 5.2_capstone_agent
+# command: python3 capstone_agent.py --cycles 6
+# exit code: 0
+
+========================================================================================
+ CAPSTONE :: AUTONOMOUS PLACEMENT PREPARATION AGENT (Assignment 5.2)
+ Modules: U1 Reflex | U2 Daemons+Bus | U3 CNP+Utility | U4 BDI+KB | U5 Crypto
+========================================================================================
+[2m[12:26:33][0m [96m[U2][0m [DAEMON     ] started 'CodingDaemon' (daemon=True)[0m
+[2m[12:26:33][0m [96m[U2][0m [DAEMON     ] started 'AptitudeDaemon' (daemon=True)[0m
+[2m[12:26:33][0m [96m[U2][0m [DAEMON     ] started 'DriveDaemon' (daemon=True)[0m
+[2m[12:26:33][0m [96m[U2][0m [DAEMON     ] started 'IntruderDaemon' (daemon=True)[0m
+
+----------------------------------------------------------------------------------------
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ] running constrained utility maximization over 10 options[0m
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ]   Product Sprint   U=0.6513[0m
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ]   DSA Bootcamp     U=0.6394[0m
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ]   Mock Bundle      U=0.6339[0m
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ]   Core CS Kit      U=0.6058[0m
+[2m[12:26:33][0m [96m[U3][0m [OPTIMIZER  ] [92mOPTIMAL -> 'Product Sprint' U=0.6513 (Rs.9,900, 55h)[0m
+
+[2m[12:26:33][0m [96m[U3][0m [CNP        ] CFP broadcast: 6 mock slots under Rs.9,000[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R1 Mentor-C: Rs.5,321 7sl q8 -> U=0.664[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R1 Mentor-A: Rs.5,720 5sl q9 -> U=0.6457[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R1 Mentor-B: Rs.5,104 8sl q7 -> U=0.6398[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R2 Mentor-C: Rs.5,302 7sl q8 -> U=0.6649[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R2 Mentor-A: Rs.5,578 5sl q9 -> U=0.6528[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R2 Mentor-B: Rs.5,168 8sl q7 -> U=0.6366[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R3 Mentor-C: Rs.5,367 7sl q8 -> U=0.6616[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R3 Mentor-A: Rs.5,573 5sl q9 -> U=0.653[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ]   R3 Mentor-B: Rs.5,345 8sl q7 -> U=0.6277[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ] [92mACCEPT Mentor-C U=0.6616 >= 0.63[0m
+[2m[12:26:33][0m [96m[U3][0m [CNP        ] [92mHANDSHAKE COMPLETE -> contract awarded to Mentor-C @ Rs.5,367[0m
+
+========================================================================================
+ AUTONOMOUS CYCLE 1/6
+========================================================================================
+[2m[12:26:33][0m [96m[U4][0m [BELIEF     ] [93mrev#1 aptitude: 62 -> 93 (aptitude-daemon)[0m
+[2m[12:26:33][0m [96m[U4][0m [BELIEF     ] [93mrev#2 days_to_drive: 40 -> 3 (placement-cell/Freshworks)[0m
+[2m[12:26:33][0m [96m[U4][0m [BELIEF     ] [93mrev#3 announced_company: None -> Freshworks (placement-cell)[0m
+[2m[12:26:33][0m [96m[U5][0m [SECURITY   ] [91mBLOCKED: untrusted host 'evil-host'[0m
+[2m[12:26:33][0m [96m[U2][0m [BUS        ] drained 4 messages from event bus[0m
+[2m[12:26:33][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:33][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:33][0m [96m[U1][0m [REFLEX     ] R5_IDLE -> send reminder (0.6h studied today)[0m
+[2m[12:26:33][0m [96m[U4][0m [DESIRE     ] [92m'PASS_APTITUDE' ACHIEVED[0m
+[2m[12:26:33][0m [96m[U4][0m [INTENTION  ] COMMIT PLAN_EmergencyCram (desire SURVIVE_DRIVE, prio 30.0)[0m
+[2m[12:26:33][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 1/5] freeze long-horizon goals[0m
+[2m[12:26:33][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 2/5] load company question bank[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   1  12:26:33  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 93%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  55%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  68%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
+|  aptitude   [92m#########.[0m  93%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, INTERVIEW_READY                    |
+| DESIRES done  : PASS_APTITUDE                                                     |
+| INTENTION     : PLAN_EmergencyCram 2/5                                            |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=3    blocked=1    | PERCEPTS 3    | REFLEX FIRES 3   | BELIEF REVS 3   |
++--------------------------------------------------------------------------------------+
+
+========================================================================================
+ AUTONOMOUS CYCLE 2/6
+========================================================================================
+[2m[12:26:34][0m [96m[U2][0m [BUS        ] drained 0 messages from event bus[0m
+[2m[12:26:34][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:34][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:34][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 3/5] revise top-50 problems[0m
+[2m[12:26:34][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 4/5] rehearse self-introduction[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   2  12:26:34  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 93%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  55%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  68%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
+|  aptitude   [92m#########.[0m  93%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, INTERVIEW_READY                    |
+| DESIRES done  : PASS_APTITUDE                                                     |
+| INTENTION     : PLAN_EmergencyCram 4/5                                            |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=3    blocked=1    | PERCEPTS 3    | REFLEX FIRES 5   | BELIEF REVS 3   |
++--------------------------------------------------------------------------------------+
+
+========================================================================================
+ AUTONOMOUS CYCLE 3/6
+========================================================================================
+[2m[12:26:35][0m [96m[U4][0m [BELIEF     ] [93mrev#4 levels: {'arrays': 81, 'strings': 76, 'oops': 72, 'recursion': 58, 'dp': 39, 'graphs': 44, 'trees': 63, 'dbms': 68, 'os': 55, 'aptitude': 93} -> {'arrays': 81, 'strings': 76, 'oops': 72, 'recursion': 58, 'dp': 39, 'graphs': 44, 'trees': 63, 'dbms': 68, 'os': 57, 'aptitude': 93} (coding-daemon/os)[0m
+[2m[12:26:35][0m [96m[U4][0m [BELIEF     ] [93mrev#5 aptitude: 93 -> 69 (aptitude-daemon)[0m
+[2m[12:26:35][0m [96m[U2][0m [BUS        ] drained 2 messages from event bus[0m
+[2m[12:26:35][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:35][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:35][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 5/5] confirm registration[0m
+[2m[12:26:35][0m [96m[U4][0m [INTENTION  ] [92mCOMPLETE PLAN_EmergencyCram[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   3  12:26:35  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 69%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  57%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  68%                                                        |
+|  aptitude   [93m######....[0m  69%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, PASS_APTITUDE, INTERVIEW_READY     |
+| DESIRES done  : -                                                                 |
+| INTENTION     : idle                                                              |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=5    blocked=1    | PERCEPTS 5    | REFLEX FIRES 7   | BELIEF REVS 5   |
++--------------------------------------------------------------------------------------+
+
+========================================================================================
+ AUTONOMOUS CYCLE 4/6
+========================================================================================
+[2m[12:26:36][0m [96m[U4][0m [BELIEF     ] [93mrev#6 levels: {'arrays': 81, 'strings': 76, 'oops': 72, 'recursion': 58, 'dp': 39, 'graphs': 44, 'trees': 63, 'dbms': 68, 'os': 57, 'aptitude': 69} -> {'arrays': 81, 'strings': 76, 'oops': 72, 'recursion': 58, 'dp': 39, 'graphs': 44, 'trees': 63, 'dbms': 65, 'os': 57, 'aptitude': 69} (coding-daemon/dbms)[0m
+[2m[12:26:36][0m [96m[U5][0m [SECURITY   ] [91mBLOCKED: malformed payload[0m
+[2m[12:26:36][0m [96m[U2][0m [BUS        ] drained 2 messages from event bus[0m
+[2m[12:26:36][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:36][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:36][0m [96m[U4][0m [INTENTION  ] COMMIT PLAN_EmergencyCram (desire SURVIVE_DRIVE, prio 30.0)[0m
+[2m[12:26:36][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 1/5] freeze long-horizon goals[0m
+[2m[12:26:36][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 2/5] load company question bank[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   4  12:26:36  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 69%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  57%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  65%                                                        |
+|  aptitude   [93m######....[0m  69%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, PASS_APTITUDE, INTERVIEW_READY     |
+| DESIRES done  : -                                                                 |
+| INTENTION     : PLAN_EmergencyCram 2/5                                            |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=6    blocked=2    | PERCEPTS 6    | REFLEX FIRES 9   | BELIEF REVS 6   |
++--------------------------------------------------------------------------------------+
+
+========================================================================================
+ AUTONOMOUS CYCLE 5/6
+========================================================================================
+[2m[12:26:37][0m [96m[U4][0m [BELIEF     ] [93mrev#7 aptitude: 69 -> 86 (aptitude-daemon)[0m
+[2m[12:26:37][0m [96m[U2][0m [BUS        ] drained 2 messages from event bus[0m
+[2m[12:26:37][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:37][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:37][0m [96m[U1][0m [REFLEX     ] R5_IDLE -> send reminder (0.5h studied today)[0m
+[2m[12:26:37][0m [96m[U4][0m [DESIRE     ] [92m'PASS_APTITUDE' ACHIEVED[0m
+[2m[12:26:37][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 3/5] revise top-50 problems[0m
+[2m[12:26:37][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 4/5] rehearse self-introduction[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   5  12:26:37  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 86%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  57%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  65%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
+|  aptitude   [92m########..[0m  86%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, INTERVIEW_READY                    |
+| DESIRES done  : PASS_APTITUDE                                                     |
+| INTENTION     : PLAN_EmergencyCram 4/5                                            |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=8    blocked=2    | PERCEPTS 8    | REFLEX FIRES 12  | BELIEF REVS 7   |
++--------------------------------------------------------------------------------------+
+
+========================================================================================
+ AUTONOMOUS CYCLE 6/6
+========================================================================================
+[2m[12:26:38][0m [96m[U2][0m [BUS        ] drained 1 messages from event bus[0m
+[2m[12:26:38][0m [96m[U1][0m [REFLEX     ] R1_URGENT -> switch to RAPID-REVISION (3d left)[0m
+[2m[12:26:38][0m [96m[U1][0m [REFLEX     ] R2_CODING -> assign graded ladder on 'dp' (39%)[0m
+[2m[12:26:38][0m [96m[U4][0m [EXECUTE    ] [PLAN_EmergencyCram 5/5] confirm registration[0m
+[2m[12:26:38][0m [96m[U4][0m [INTENTION  ] [92mCOMPLETE PLAN_EmergencyCram[0m
+
++--------------------------------------------------------------------------------------+
+| PLACEMENT PREPARATION AGENT :: LIVE DASHBOARD               cycle   6  12:26:38  |
++--------------------------------------------------------------------------------------+
+| CGPA 7.6   Target: Freshworks   Drive in: 3d   Aptitude: 86%   Mock: 5/10    |
++--------------------------------------------------------------------------------------+
+|  dp         [91m###.......[0m  39%                                                        |
+|  graphs     [91m####......[0m  44%                                                        |
+|  os         [93m#####.....[0m  57%                                                        |
+|  recursion  [93m#####.....[0m  58%                                                        |
+|  trees      [93m######....[0m  63%                                                        |
+|  dbms       [93m######....[0m  65%                                                        |
+|  oops       [92m#######...[0m  72%                                                        |
+|  strings    [92m#######...[0m  76%                                                        |
+|  arrays     [92m########..[0m  81%                                                        |
+|  aptitude   [92m########..[0m  86%                                                        |
++--------------------------------------------------------------------------------------+
+| DESIRES active: SURVIVE_DRIVE, FIX_WEAK_SKILL, INTERVIEW_READY                    |
+| DESIRES done  : PASS_APTITUDE                                                     |
+| INTENTION     : idle                                                              |
++--------------------------------------------------------------------------------------+
+| SECURITY  accepted=9    blocked=2    | PERCEPTS 9    | REFLEX FIRES 14  | BELIEF REVS 7   |
++--------------------------------------------------------------------------------------+
+
+----------------------------------------------------------------------------------------
+[2m[12:26:39][0m [96m[U2][0m [DAEMON     ] 'CodingDaemon' joined (alive=False)[0m
+[2m[12:26:39][0m [96m[U2][0m [DAEMON     ] 'AptitudeDaemon' joined (alive=False)[0m
+[2m[12:26:39][0m [96m[U2][0m [DAEMON     ] 'DriveDaemon' joined (alive=False)[0m
+[2m[12:26:39][0m [96m[U2][0m [DAEMON     ] 'IntruderDaemon' joined (alive=False)[0m
+
+========================================================================================
+ FINAL SYSTEM REPORT
+========================================================================================
+ UNIT 1  reflex rules fired          : 14
+ UNIT 2  authenticated percepts      : 9 (4 daemon threads)
+ UNIT 3  negotiated contract         : Mentor-C @ Rs.5,367, 7 slots, buyer-U=0.6616
+ UNIT 3  optimal resource selected   : Product Sprint (U=0.6513)
+ UNIT 4  belief revisions            : 7
+ UNIT 4  intentions dropped/replanned: 0
+ UNIT 5  commands accepted / blocked : 9 / 2
+            - blocked: malformed payload
+            - blocked: untrusted host 'evil-host'
+
+ ELIGIBILITY (cgpa 7.6):
+    Zoho         tier-2  skill-coverage    67%  18 LPA
+    Freshworks   tier-2  skill-coverage    33%  22 LPA
+    Infosys      tier-3  skill-coverage   100%  6.5 LPA
+
+ STATUS: agent completed 6 autonomous cycles with no human input.
+========================================================================================

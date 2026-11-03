@@ -1,0 +1,71 @@
+# Activity 4.2_knowledge_api_agent
+# command: python3 knowledge_api_agent.py 
+# exit code: 0
+
+
+================================================================================================
+ KNOWLEDGE REPRESENTATION + ADAPTIVE API INTEGRATION (Assignment 4.2)
+================================================================================================
+ Mode: LIVE (real REST endpoints)
+
+================================================================================================
+ PART 1 :: ONTOLOGICAL KNOWLEDGE REPRESENTATION
+================================================================================================
+   Ontology v1.2 | 4 classes | 5 relation types
+      (Skill) --[REQUIRED_BY]--> (Company)
+      (Skill) --[PREREQUISITE_OF]--> (Skill)
+      (Resource) --[TEACHES]--> (Skill)
+      (Student) --[HAS_LEVEL_IN]--> (Skill)
+      (Student) --[ELIGIBLE_FOR]--> (Company)
+   Individuals: 11 skills, 5 companies, 5 resources
+[12:26:32] [KR            ] ontology serialised -> knowledge_base.json (4074 bytes)
+
+   INFERENCE QUERIES OVER THE GRAPH:
+      prerequisite_closure('dp')            = ['arrays', 'recursion']
+      prerequisite_closure('system_design') = ['dbms', 'oops']
+      resources_for('graphs')               = ['striver_a2z', 'neetcode_150']
+
+      eligible_companies(cgpa=7.6):
+         Zoho         tier-2  skill coverage 3/4
+         Freshworks   tier-2  skill coverage 3/4
+         Infosys      tier-3  skill coverage 3/3
+         TCS          tier-3  skill coverage 2/3
+
+================================================================================================
+ PART 2 :: BASE PLAN DERIVED PURELY FROM THE KNOWLEDGE GRAPH
+================================================================================================
+
+    BASE PLAN (target = Amazon)
+    #  Skill             Lvl  Hrs  Mode                Blocked-by            Resources
+    1  system_design      22   12  deep-study          -                     ddia_book
+    2  dp                 38   16  deep-study          ['recursion']         striver_a2z,neetcode_150
+    3  graphs             41   16  deep-study          ['recursion']         striver_a2z,neetcode_150
+    4  trees              66   16  deep-study          ['recursion']         striver_a2z
+
+================================================================================================
+ PART 3 :: LIVE REST API INGESTION
+================================================================================================
+[12:26:32] [API/GITHUB    ] GET https://api.github.com/users/torvalds  [anonymous]
+[12:26:33] [API/GITHUB    ] 200 OK -> repos=12 followers=329594
+[12:26:33] [API/WEATHER   ] GET https://api.open-meteo.com/v1/forecast?latitude=12.92&longitude=80.12&...
+[12:26:33] [API/WEATHER   ] 200 OK -> 31.5C humidity=49% rain=0.0mm
+
+   github  source=LIVE  public_repos=12 followers=329594
+   weather source=LIVE  temp=31.5C precip=0.0mm
+
+================================================================================================
+ PART 4 :: ADAPTIVE BEHAVIOURAL EXECUTION (plan mutates from live data)
+================================================================================================
+[12:26:33] [ADAPT         ] 1. public_repos=12 >= 5 -> portfolio task SUPPRESSED, hours reallocated to weakest skill
+[12:26:33] [ADAPT         ] 2. temperature=31.5C, rain=0.0mm -> normal schedule retained
+
+    ADAPTED PLAN (post-ingestion)
+    #  Skill             Lvl  Hrs  Mode                Blocked-by            Resources
+    1  system_design      22   18  deep-study          -                     ddia_book
+    2  dp                 38   16  deep-study          ['recursion']         striver_a2z,neetcode_150
+    3  graphs             41   16  deep-study          ['recursion']         striver_a2z,neetcode_150
+    4  trees              66   16  deep-study          ['recursion']         striver_a2z
+
+================================================================================================
+ RESULT: 2 adaptive mutations applied to a 4-task plan from live feeds.
+================================================================================================

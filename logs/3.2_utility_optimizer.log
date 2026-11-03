@@ -1,0 +1,73 @@
+# Activity 3.2_utility_optimizer
+# command: python3 utility_optimizer.py 
+# exit code: 0
+# lines: 68
+
+================================================================================================
+ SELF-INTERESTED UTILITY OPTIMIZATION :: PLACEMENT PREP AGENT (Assignment 3.2)
+================================================================================================
+ CONSTRAINTS  budget<=Rs.12,000 | hours<=70 | mentor_rating>=7.0
+ WEIGHTS      skill=0.25 place=0.3 rating=0.15 cost=0.2 time=0.1   (sum=1.0)
+ MASTERED     ['Arrays', 'OOPS', 'Strings']  -> redundancy penalty applies
+
+------------------------------------------------------------------------------------------------
+ SEARCH SPACE : 10 OPTIONS
+------------------------------------------------------------------------------------------------
+ ID Option                        Cost   Hrs  Skill  Boost  Rate
+ 1  DSA Bootcamp Pro             8,500    60     82     74   8.6
+ 2  Aptitude Crash Course        3,200    25     45     38   7.4
+ 3  FAANG Interview Track       14,500    90     95     92   9.4
+ 4  Core CS Revision Kit         4,100    35     58     51   7.9
+ 5  Mock Interview Bundle        6,800    20     40     78   9.1
+ 6  Full Stack Placement        11,200   110     88     69   8.2
+ 7  Free Community Track             0    80     35     22   5.2
+ 8  Resume + LinkedIn Lab        2,400    10     18     44   8.0
+ 9  Product Company Sprint       9,900    55     79     85   8.8
+ 10 Premium 1-on-1 Mentor       19,800    45     90     88   9.7
+
+------------------------------------------------------------------------------------------------
+ STEP 1 :: CONSTRAINT FILTERING (infeasible options pruned)
+------------------------------------------------------------------------------------------------
+   [REJECT] id=3 FAANG Interview Track      violations: cost 14500>12000, hours 90>70
+   [REJECT] id=6 Full Stack Placement       violations: hours 110>70
+   [REJECT] id=7 Free Community Track       violations: hours 80>70, rating 5.2<7.0
+   [REJECT] id=10 Premium 1-on-1 Mentor      violations: cost 19800>12000
+   -> 6 feasible / 10 total
+
+------------------------------------------------------------------------------------------------
+ STEP 2 :: UTILITY EVALUATION OF FEASIBLE SET (ranked)
+------------------------------------------------------------------------------------------------
+ Rank  ID  Option                        U(x)   components
+ 1     5   Mock Interview Bundle       0.6339   skill=0.421 place=0.78 rate=0.91 cost=0.433 time=0.714 pen=0.0
+ 2     1   DSA Bootcamp Pro            0.5769   skill=0.863 place=0.74 rate=0.86 cost=0.292 time=0.143 pen=0.062
+ 3     9   Product Company Sprint      0.5680   skill=0.832 place=0.85 rate=0.88 cost=0.175 time=0.214 pen=0.083
+ 4     2   Aptitude Crash Course       0.5544   skill=0.474 place=0.38 rate=0.74 cost=0.733 time=0.643 pen=0.0
+ 5     8   Resume + LinkedIn Lab       0.5451   skill=0.189 place=0.44 rate=0.8 cost=0.8 time=0.857 pen=0.0
+ 6     4   Core CS Revision Kit        0.5433   skill=0.611 place=0.51 rate=0.79 cost=0.658 time=0.5 pen=0.062
+
+================================================================================================
+ STEP 3 :: OPTIMAL SINGLE DECISION (argmax U)
+================================================================================================
+   SELECTED : [5] Mock Interview Bundle
+   U(x*)    = 0.6339
+   Cost     = Rs.6,800 / Rs.12,000   (5,200 unused)
+   Hours    = 20 / 70
+   PROOF    : U(x*) = 0.6339 > U(runner-up 'DSA Bootcamp Pro') = 0.5769
+              and U(x*) >= U(x) for ALL 6 feasible x. OPTIMAL.
+
+================================================================================================
+ STEP 4 :: CONSTRAINED MULTI-SELECT (knapsack extension)
+================================================================================================
+   + [2] Aptitude Crash Course      U=0.5544  Rs.3,200  25h
+   + [8] Resume + LinkedIn Lab      U=0.5451  Rs.2,400  10h
+   + [4] Core CS Revision Kit       U=0.5433  Rs.4,100  35h
+   TOTAL UTILITY = 1.6428 | cost Rs.9,700/12,000 | hours 70/70
+
+================================================================================================
+ STEP 5 :: ERROR / CONSTRAINT BOUNDARY RESILIENCE TESTS
+================================================================================================
+   [Zero budget       ] handled: 0 feasible options -> agent returns NO_VIABLE_PLAN (no crash)
+   [Zero hours        ] handled: 0 feasible options -> agent returns NO_VIABLE_PLAN (no crash)
+   [Impossible rating ] handled: 0 feasible options -> agent returns NO_VIABLE_PLAN (no crash)
+   [Negative budget   ] handled: 0 feasible options -> agent returns NO_VIABLE_PLAN (no crash)
+================================================================================================

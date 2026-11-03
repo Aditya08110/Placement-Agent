@@ -1,0 +1,105 @@
+# Activity 5.1_secure_agent
+# command: python3 secure_agent.py 
+# exit code: 0
+
+
+==========================================================================================
+ AGENT AUTHENTICATION & HOST INTEGRITY VERIFICATION (Assignment 5.1)
+==========================================================================================
+ Trusted hosts     : ['placement-cell-01', 'mentor-node-07', 'student-agent-a']
+ Signature scheme  : HMAC-SHA256 over canonical JSON
+ Replay window     : 30s + single-use nonce
+ Verification gates: 6 (structure, identity, origin, signature, freshness, authz)
+
+--- SCENARIO 1: LEGITIMATE command from trusted ADMIN host ------------------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'placement-cell-01' found in trusted registry (role=ADMIN)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   OK GATE-4 signature verified ab6ab48d1b8fcf00...
+[12:26:33] [SECURITY    ]   OK GATE-5 freshness ok (age=0s), nonce unique
+[12:26:33] [SECURITY    ]   OK GATE-6 role 'ADMIN' authorized for 'PUSH_DRIVE'
+[12:26:33] [AGENT       ]   >> EXECUTING 'PUSH_DRIVE' args={'company': 'Amazon', 'date': '2026-09-15'}
+
+--- SCENARIO 2: LEGITIMATE command from TRAINER host ------------------------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'mentor-node-07' found in trusted registry (role=TRAINER)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   OK GATE-4 signature verified 56cfdc41bf9e8fbe...
+[12:26:33] [SECURITY    ]   OK GATE-5 freshness ok (age=0s), nonce unique
+[12:26:33] [SECURITY    ]   OK GATE-6 role 'TRAINER' authorized for 'UPDATE_PLAN'
+[12:26:33] [AGENT       ]   >> EXECUTING 'UPDATE_PLAN' args={'add_topic': 'Graphs'}
+
+--- SCENARIO 3: ATTACK - forged signature (attacker guesses the key) --------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'placement-cell-01' found in trusted registry (role=ADMIN)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   X GATE-4 FAILED -> HMAC-SHA256 signature mismatch (expected 2b64f57416a86c0c..., got 9508f2722a52d004...)
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-4] HMAC-SHA256 signature mismatch (expected 2b64f57416a86c0c..., got 9508f2722a52d004...)
+
+--- SCENARIO 4: ATTACK - unknown/unregistered rogue host --------------------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   X GATE-2 FAILED -> unknown host_id 'evil-node-99' -- not in trusted registry
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-2] unknown host_id 'evil-node-99' -- not in trusted registry
+
+--- SCENARIO 5: ATTACK - tampered payload (man-in-the-middle mutation) ------
+[12:26:33] [ATTACKER    ]   intercepted message and injected 'delete_all_progress': True
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'mentor-node-07' found in trusted registry (role=TRAINER)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   X GATE-4 FAILED -> HMAC-SHA256 signature mismatch (expected fd83ecce5e81ed67..., got de034a4e4cfda18e...)
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-4] HMAC-SHA256 signature mismatch (expected fd83ecce5e81ed67..., got de034a4e4cfda18e...)
+
+--- SCENARIO 6: ATTACK - replay of a previously valid message ---------------
+[12:26:33] [ATTACKER    ]   re-sending the captured Scenario-1 packet verbatim
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'placement-cell-01' found in trusted registry (role=ADMIN)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   OK GATE-4 signature verified ab6ab48d1b8fcf00...
+[12:26:33] [SECURITY    ]   X GATE-5 FAILED -> REPLAY ATTACK: nonce 0f83c6e2e521db6f already consumed
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-5] REPLAY ATTACK: nonce 0f83c6e2e521db6f already consumed
+
+--- SCENARIO 7: ATTACK - privilege escalation by a low-privilege PEER -------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'student-agent-a' found in trusted registry (role=PEER)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   OK GATE-4 signature verified 4e0b81f1a9699f2d...
+[12:26:33] [SECURITY    ]   OK GATE-5 freshness ok (age=0s), nonce unique
+[12:26:33] [SECURITY    ]   X GATE-6 FAILED -> PRIVILEGE ESCALATION: role 'PEER' may not execute 'WIPE_PROFILE' (allowed: ['SYNC_STATE'])
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-6] PRIVILEGE ESCALATION: role 'PEER' may not execute 'WIPE_PROFILE' (allowed: ['SYNC_STATE'])
+
+--- SCENARIO 8: ATTACK - host spoofing from a non-registered IP -------------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'placement-cell-01' found in trusted registry (role=ADMIN)
+[12:26:33] [SECURITY    ]   X GATE-3 FAILED -> host integrity violation: 'placement-cell-01' claimed from 203.0.113.66, registered 127.0.0.1
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-3] host integrity violation: 'placement-cell-01' claimed from 203.0.113.66, registered 127.0.0.1
+
+--- SCENARIO 9: ATTACK - stale/expired message (clock rollback) -------------
+[12:26:33] [SECURITY    ]   OK GATE-1 payload structure valid
+[12:26:33] [SECURITY    ]   OK GATE-2 host 'placement-cell-01' found in trusted registry (role=ADMIN)
+[12:26:33] [SECURITY    ]   OK GATE-3 origin IP 127.0.0.1 matches registered host
+[12:26:33] [SECURITY    ]   OK GATE-4 signature verified 01a30b986fbfcaf1...
+[12:26:33] [SECURITY    ]   X GATE-5 FAILED -> stale message: age 9999s exceeds 30s window
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-5] stale message: age 9999s exceeds 30s window
+
+--- SCENARIO 10: ATTACK - malformed / fuzzing payload ------------------------
+[12:26:33] [SECURITY    ]   X GATE-1 FAILED -> malformed payload, missing field 'host_id'
+[12:26:33] [AGENT       ]   >> COMMAND BLOCKED. Agent state unchanged. [GATE-1] malformed payload, missing field 'host_id'
+
+==========================================================================================
+ SECURITY AUDIT LOG
+==========================================================================================
+ Result   Gate   Detail
+ ACCEPT   -      placement-cell-01:PUSH_DRIVE
+ ACCEPT   -      mentor-node-07:UPDATE_PLAN
+ REJECT   GATE-4 HMAC-SHA256 signature mismatch (expected 2b64f57416a86c0c..., got 9508f2722a52d004...)
+ REJECT   GATE-2 unknown host_id 'evil-node-99' -- not in trusted registry
+ REJECT   GATE-4 HMAC-SHA256 signature mismatch (expected fd83ecce5e81ed67..., got de034a4e4cfda18e...)
+ REJECT   GATE-5 REPLAY ATTACK: nonce 0f83c6e2e521db6f already consumed
+ REJECT   GATE-6 PRIVILEGE ESCALATION: role 'PEER' may not execute 'WIPE_PROFILE' (allowed: ['SYNC_STATE'])
+ REJECT   GATE-3 host integrity violation: 'placement-cell-01' claimed from 203.0.113.66, registered 127.0.0.1
+ REJECT   GATE-5 stale message: age 9999s exceeds 30s window
+ REJECT   GATE-1 malformed payload, missing field 'host_id'
+------------------------------------------------------------------------------------------
+ ACCEPTED : 2   REJECTED : 8   BLOCK RATE : 80.0%
+ RESULT   : all unauthorized commands blocked; agent state never mutated.
+==========================================================================================

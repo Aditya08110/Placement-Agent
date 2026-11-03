@@ -1,0 +1,111 @@
+# Activity 4.1_bdi_agent
+# command: python3 bdi_agent.py 
+# exit code: 0
+
+
+========================================================================================
+ BDI GOAL-DRIVEN PLACEMENT PREPARATION AGENT (Assignment 4.1)
+========================================================================================
+
+========================================================================================
+ PHASE 0 :: INITIAL BDI STATE
+========================================================================================
+    +-- BELIEF BASE ----------------------------------------------------------
+    |   coding_score               = 42
+    |   aptitude_score             = 81
+    |   interview_rating           = 7
+    |   cgpa                       = 7.6
+    |   days_to_drive              = 45
+    |   weakest_topic              = Dynamic Programming
+    |   projects_on_resume         = 2
+    |   battery_of_mock_interviews_done = 3
+    +-------------------------------------------------------------------------
+    +-- DESIRE SET -----------------------------------------------------------
+    |   SURVIVE_IMMINENT_DRIVE             INACTIVE   prio=20.0
+    |   MASTER_WEAK_CODING_TOPIC           INACTIVE   prio=10.24
+    |   CLEAR_APTITUDE_CUTOFF              INACTIVE   prio=7.0
+    |   ACHIEVE_INTERVIEW_READINESS        INACTIVE   prio=6.5
+    |   BUILD_PROJECT_PORTFOLIO            INACTIVE   prio=4.0
+    +-------------------------------------------------------------------------
+    +-- INTENTION STACK ------------------------------------------------------
+    |   (empty)
+    +-------------------------------------------------------------------------
+
+========================================================================================
+ PHASE 1 :: DELIBERATION -> INTENTION SELECTION
+========================================================================================
+[12:26:32] [DESIRE      ] 'MASTER_WEAK_CODING_TOPIC' -> ACTIVE (priority 10.24)
+[12:26:32] [DESIRE      ] 'CLEAR_APTITUDE_CUTOFF' -> ACHIEVED
+[12:26:32] [DESIRE      ] 'ACHIEVE_INTERVIEW_READINESS' -> ACTIVE (priority 6.5)
+[12:26:32] [DESIRE      ] 'BUILD_PROJECT_PORTFOLIO' -> ACTIVE (priority 4.0)
+[12:26:32] [INTENTION   ] COMMIT plan 'PLAN_CodingRemediation' for desire 'MASTER_WEAK_CODING_TOPIC' (7 steps)
+    +-- INTENTION STACK ------------------------------------------------------
+    |   PLAN_CodingRemediation           0/7 steps  desire='MASTER_WEAK_CODING_TOPIC'
+    +-------------------------------------------------------------------------
+
+========================================================================================
+ PHASE 2 :: NORMAL PLAN EXECUTION (3 steps)
+========================================================================================
+[12:26:32] [EXECUTE     ] [PLAN_CodingRemediation 1/7] load weakest topic from belief base
+[12:26:32] [EXECUTE     ] [PLAN_CodingRemediation 2/7] fetch 10 curated problems for that topic
+[12:26:32] [EXECUTE     ] [PLAN_CodingRemediation 3/7] solve 4 EASY problems
+
+========================================================================================
+ PHASE 3 :: UNEXPECTED ENVIRONMENTAL BELIEF UPDATE (mid-execution)
+========================================================================================
+  >> External percept arrives: Amazon has moved its campus drive forward.
+
+[12:26:32] [BELIEF      ] REVISION #1: 'days_to_drive' 45 -> 3  (placement-cell notification)
+[12:26:32] [BELIEF      ] REVISION #2: 'company_announced' None -> 'Amazon'  (placement-cell notification)
+
+========================================================================================
+ PHASE 4 :: DYNAMIC PLAN RECALCULATION TRIGGERED BY BELIEF CHANGE
+========================================================================================
+[12:26:32] [DESIRE      ] 'SURVIVE_IMMINENT_DRIVE' -> ACTIVE (priority 30.0)
+[12:26:32] [RECALC      ] priority inversion detected: 'SURVIVE_IMMINENT_DRIVE' (30.0) > 'MASTER_WEAK_CODING_TOPIC' (10.24)
+[12:26:32] [INTENTION   ] DROP plan 'PLAN_CodingRemediation' at step 3/7 -- superseded by higher-priority desire
+[12:26:32] [INTENTION   ] COMMIT plan 'PLAN_EmergencyCram' for desire 'SURVIVE_IMMINENT_DRIVE' (6 steps)
+    +-- DESIRE SET -----------------------------------------------------------
+    |   SURVIVE_IMMINENT_DRIVE             ACTIVE     prio=30.0
+    |   MASTER_WEAK_CODING_TOPIC           ACTIVE     prio=10.24
+    |   CLEAR_APTITUDE_CUTOFF              ACHIEVED   prio=7.0
+    |   ACHIEVE_INTERVIEW_READINESS        ACTIVE     prio=6.5
+    |   BUILD_PROJECT_PORTFOLIO            ACTIVE     prio=4.0
+    +-------------------------------------------------------------------------
+    +-- INTENTION STACK ------------------------------------------------------
+    |   PLAN_EmergencyCram               0/6 steps  desire='SURVIVE_IMMINENT_DRIVE'
+    +-------------------------------------------------------------------------
+
+========================================================================================
+ PHASE 5 :: EXECUTING THE NEW (SHIFTED) INTENTION
+========================================================================================
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 1/6] PRIORITY OVERRIDE: freeze long-horizon plans
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 2/6] load company-specific previous-year question bank
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 3/6] revise top-50 must-do problems
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 4/6] revise 1-page core CS cheat sheet
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 5/6] rehearse 60-second self-introduction
+[12:26:32] [EXECUTE     ] [PLAN_EmergencyCram 6/6] confirm drive registration + documents
+
+========================================================================================
+ PHASE 6 :: BELIEF UPDATE -> DESIRE SATISFACTION -> INTENTION RETIREMENT
+========================================================================================
+[12:26:32] [BELIEF      ] REVISION #3: 'days_to_drive' 3 -> -1  (drive completed)
+[12:26:32] [BELIEF      ] REVISION #4: 'coding_score' 42 -> 78  (post-drive assessment)
+[12:26:32] [DESIRE      ] 'SURVIVE_IMMINENT_DRIVE' -> ACHIEVED
+[12:26:32] [DESIRE      ] 'MASTER_WEAK_CODING_TOPIC' -> ACHIEVED
+    +-- INTENTION STACK ------------------------------------------------------
+    |   PLAN_EmergencyCram               6/6 steps  desire='SURVIVE_IMMINENT_DRIVE'
+    +-------------------------------------------------------------------------
+
+========================================================================================
+ VERIFICATION SUMMARY
+========================================================================================
+   Belief revisions performed  : 4
+   Intentions abandoned        : 1
+      - 'PLAN_CodingRemediation' dropped at 3/7 (desire 'MASTER_WEAK_CODING_TOPIC')
+   Active intention now        : PLAN_EmergencyCram
+
+   >> INTENTION SHIFT DEMONSTRATED: a belief change (days_to_drive 45 -> 3)
+      caused the agent to abandon PLAN_CodingRemediation mid-execution and
+      re-commit to PLAN_EmergencyCram WITHOUT any human instruction.
+========================================================================================

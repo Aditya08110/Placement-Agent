@@ -1,0 +1,27 @@
+# Activity 2.2 CLIENT (Agent-A, Student Prep)
+# command: python3 agent_a_client.py
+# exit code: 0
+
+==============================================================================
+ AGENT-A :: STUDENT PREP AGENT (socket client)  [Assignment 2.2]
+==============================================================================
+[10:40:38] [AGENT-A/CLIENT] TCP channel established -> 127.0.0.1:50607
+[10:40:38] [AGENT-A/CLIENT] TX intent=HANDSHAKE
+[10:40:38] [AGENT-A/CLIENT] RX intent=HANDSHAKE_ACK status=OK
+[10:40:39] [AGENT-A/CLIENT] TX intent=SYNC_STATE  (326 bytes serialized)
+[10:40:39] [AGENT-A/CLIENT] RX intent=ELIGIBILITY_REPORT
+
+   ---- AGENT-B ELIGIBILITY REPORT ----
+      ELIGIBLE : Freshworks   22.0 LPA
+      ELIGIBLE : Zoho         18.0 LPA
+      ELIGIBLE : TCS Digital  7.0 LPA
+      ELIGIBLE : Infosys      6.5 LPA
+      ELIGIBLE : Wipro        5.5 LPA
+      BLOCKED  : Amazon       gaps -> CGPA 7.6<8.0, coding 79<85, aptitude 74<80
+      ADVICE   : Focus on: CGPA, aptitude, coding
+
+[10:40:39] [AGENT-A/CLIENT] AUTONOMOUS DECISION: gaps detected -> requesting remedial action
+[10:40:39] [AGENT-A/CLIENT] RX intent=ACTION_DIRECTIVE -> SCHEDULE_MOCK_INTERVIEW @ 2026-09-12 10:00 IST
+[10:40:39] [AGENT-A/CLIENT] PLAN UPDATED: mock interview auto-added to local study calendar
+[10:40:40] [AGENT-A/CLIENT] RX intent=TERMINATE_ACK -- session closed cleanly
+==============================================================================
